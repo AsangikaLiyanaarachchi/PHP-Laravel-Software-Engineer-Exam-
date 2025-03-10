@@ -118,8 +118,11 @@
 
             <button type="submit" class="register-btn">Login</button>
             <br><br>
-            <!-- <button type="submit" class="register-btn">LogIn</button> -->
+            
         </form>
+        <a href="{{route('register')}}">
+            <button type="submit" class="register-btn">SignIn</button>
+        </a>
     </div>
 
 </body>
