@@ -48,10 +48,19 @@ class AuthManager extends Controller
         $credentials = $request->only('email', 'password');
         $remember = $request->has('remember');
 
-        if (Auth::attempt($credentials,$remember)) {
-            return redirect()->intended(route("home"));
+        if (Auth::attempt($credentials, $remember)) {
+            $userId = Auth::user()->id;
+            return redirect()->intended(route("home", ['user_id' => $userId]));
         }
         return redirect(route("login"))->with("error", "Invalid email or username");
+    }
+
+    function index(Request $request)
+    {
+
+        $userId = $request->query('user_id');
+
+        return view('welcome', compact('userId'));
     }
 
     function logout()
